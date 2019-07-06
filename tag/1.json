@@ -1,0 +1,19 @@
+{
+  "id" : 1,
+  "desc" : "test tag",
+  "version" : "1.0",
+  "actions":[
+    {
+      "type":"info",
+      "title" : "Tag Info",
+      "content":{
+        "encoding" : "ascii",
+        "data" : "this is plain ascii text, other format be base 64"
+        }
+    },
+    {
+      "type" : "deeplink",
+      "deeplink" : "tel://+919876543210"
+    }
+  ]
+}
