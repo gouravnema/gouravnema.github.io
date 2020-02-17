@@ -8,18 +8,19 @@ function redirect(token, key) {
     var form = document.createElement("form");
     var element1 = document.createElement("input"); 
     var element2 = document.createElement("input");  
-
+ 
     form.method = "POST";
     form.action = "http://localhost:4004/review";   
 
     element1.value=token;
     element1.name="token";
+    debugger;
     form.appendChild(element1);  
 
     element2.value=key;
     element2.name="key";
     form.appendChild(element2);
-
+    
     document.body.appendChild(form);
 
     form.submit();
