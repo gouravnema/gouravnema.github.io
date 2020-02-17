@@ -1,0 +1,33 @@
+<html>
+<head>
+<title> cors post form submit</title>
+<head>
+<script language="javascript">
+
+function redirect(token, key) {
+    var form = document.createElement("form");
+    var element1 = document.createElement("input"); 
+    var element2 = document.createElement("input");  
+
+    form.method = "POST";
+    form.action = "http://localhost:4004/review";   
+
+    element1.value=token;
+    element1.name="token";
+    form.appendChild(element1);  
+
+    element2.value=key;
+    element2.name="key";
+    form.appendChild(element2);
+
+    document.body.appendChild(form);
+
+    form.submit();
+}
+redirect("dafkjhagsdfyadufjkafduydfiadf", "sid")
+</script>
+</head>
+<body>
+  redirecting... 
+</body>
+</html>
