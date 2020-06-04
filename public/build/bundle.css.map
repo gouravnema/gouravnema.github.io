@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../App.svelte",
+    "../../ProfilePic.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\timport ProfilePic from \"./components/ProfilePic.svelte\";\n</script>\n\n<main>\n\t<div class=\"intro\">\n\t\t<h1>Hello {name}! I am Gourav</h1>\n\t\t<ProfilePic/>\n\t</div>\n\n</main>\n\n<style>\n\n\th1 {\n\t\tcolor: #ff3e00;\n\t\ttext-transform: uppercase;\n\t\tfont-size: 4em;\n\t\tfont-weight: 100;\n\t}\n\n\tmain{\n\t\tdisplay: flex;\n\t\tjustify-content: center;\n\t}\n\t.intro{\n\t\tdisplay: flex;\n\t\tflex-direction: column-reverse;\n\t\talign-items: center;\n\t}\n\n</style>\n",
+    "<script>\n    let src=\"images/profile.jpg\"\n</script>\n<style>\n    img{\n        height: 150px;\n        width: 150px;\n        overflow: hidden;\n        border-radius: 50%;\n    }\n</style>\n\n<img {src} alt=\"gourav nema\">\n"
+  ],
+  "names": [],
+  "mappings": "AAcC,EAAE,eAAC,CAAC,AACH,KAAK,CAAE,OAAO,CACd,cAAc,CAAE,SAAS,CACzB,SAAS,CAAE,GAAG,CACd,WAAW,CAAE,GAAG,AACjB,CAAC,AAED,mBAAI,CAAC,AACJ,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,AACxB,CAAC,AACD,qBAAM,CAAC,AACN,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,cAAc,CAC9B,WAAW,CAAE,MAAM,AACpB,CAAC;ACzBE,kBAAG,CAAC,AACA,MAAM,CAAE,KAAK,CACb,KAAK,CAAE,KAAK,CACZ,QAAQ,CAAE,MAAM,CAChB,aAAa,CAAE,GAAG,AACtB,CAAC"
+}
