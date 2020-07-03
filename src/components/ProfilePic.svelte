@@ -3,8 +3,8 @@
 </script>
 <style>
     img{
-        height: 150px;
-        width: 150px;
+        height: 15vh;
+        width: 15vh;
         overflow: hidden;
         border-radius: 50%;
     }

@@ -5,6 +5,8 @@ html, body {
 }
 
 body {
+	overscroll-behavior-y:none ;
+	height: 101vh;
 	color: #333;
 	margin: 0;
 	padding: 8px;
