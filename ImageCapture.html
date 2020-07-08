@@ -28,7 +28,7 @@
             return singleton.track
         }
         let stream = await navigator.mediaDevices.getUserMedia({video: true});
-        singleton.track = stream.getVideoTracks()[0];
+        singleton.track = stream.getVideoTracks()[1];
         return singleton.track;
     }
 
