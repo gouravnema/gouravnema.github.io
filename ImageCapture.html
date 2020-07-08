@@ -7,109 +7,115 @@
 <canvas id="canvas" width="640" height="480"></canvas>
 
 <div id="devices"></div>
-<a href = '#' onclick="handleClick(event)">capture
-<script>
 
-function handleClick(event){
+<a href='#' onclick="(function(event){
     event.preventDefault();
     captureImage();
-}
+})(event)">capture</a>
 
-window.APP  =1
-const singleton = {}
-
-async function getVideoTrack(){
-    if( singleton.track){
-        return singleton.track
-    }
-    let stream  = await navigator.mediaDevices.getUserMedia({video:true});
-    singleton.track = stream.getVideoTracks()[0];
-    return singleton.track;
-}
-
-function stopTrack() {
-    if( singleton.track){
-        singleton.track.stop();
-        delete singleton.track;
-    }
-}
+<a href='#' onclick="(function(event){
+    event.preventDefault();
+    getDevices();
+})(event)">devices</a>
 
 
-function getDevices(){
-    let divHtml = [];
-    navigator.mediaDevices.enumerateDevices().then(function(devices){
-        document.getElementById('devices').innerHTML = devices.map(device=>device.label);
-    })
-}
+<script>
+    window.APP = 1
+    const singleton = {}
 
-async function captureImage() {
-    let track = await getVideoTrack();
-    const imageCapture = new ImageCapture(track);
-    setTimeout(async ()=>{
-        let imageBlob = await imageCapture.takePhoto();
-        stopTrack()
-        let img =  document.getElementById('snap');
-        img.src = URL.createObjectURL(imageBlob);
-        img.onload = () => { URL.revokeObjectURL(this.src);}
-        const codeReader = new ZXing.BrowserQRCodeReader();
-        try {
-            console.log('start reading');
-            debugger;
-             window.APP =  await codeReader.decodeFromImage(img);
-
-        } catch (err) {
-            console.error('in error');
-            alert("E:" + err);
-            console.error(err);
+    async function getVideoTrack() {
+        if (singleton.track) {
+            return singleton.track
         }
-    }, 1000);
-}
+        let stream = await navigator.mediaDevices.getUserMedia({video: true});
+        singleton.track = stream.getVideoTracks()[0];
+        return singleton.track;
+    }
 
-// function getVideoDevice(){
-//     navigator.mediaDevices.getUserMedia({video:true})
-//     .then(function(stream){
-//         let tracks  = stream.getVideoTracks()[0];
-//         const imageCapture = new ImageCapture(tracks);
-//         imageCapture.takePhoto()
-//             .then(blob => {
-//                 let img =  document.getElementById('snap')
-//                 img.src = URL.createObjectURL(blob);
-//                 img.onload = () => { URL.revokeObjectURL(this.src); }
-//             })
-//             .catch(error => console.error('takePhoto() error:', error));
-//         debugger
-//     })
-// }
+    function stopTrack() {
+        if (singleton.track) {
+            singleton.track.stop();
+            delete singleton.track;
+        }
+    }
 
-function captureStream(){
-    navigator.mediaDevices.getUserMedia({video:true}).then(stream=>{
-        let tracks = stream.getVideoTracks()[0]
-        const imageCapture = new ImageCapture(tracks)
-        const canvas = document.querySelector('canvas');
-        imageCapture.grabFrame()
-            .then(imageBitmap => {
-                tracks.stop()
-                canvas.width = imageBitmap.width;
-                canvas.height = imageBitmap.height;
-                canvas.getContext('2d').drawImage(imageBitmap, 0, 0);
-            })
-            .catch(error => console.error('grabFrame() error:', error));
-    })
-}
 
-function getCapabilities(){
-    navigator.mediaDevices.getUserMedia({video:true}).then(stream=>{
-        let track = stream.getVideoTracks()[0];
-         const capabilities = track.getCapabilities();
-         debugger
+    function getDevices() {
+        let divHtml = [];
+        navigator.mediaDevices.enumerateDevices().then(function (devices) {
+            document.getElementById('devices').innerHTML = devices.map(device => device.label);
+        })
+    }
 
-    })
-}
+    async function captureImage() {
+        let track = await getVideoTrack();
+        const imageCapture = new ImageCapture(track);
+        setTimeout(async () => {
+            let imageBlob = await imageCapture.takePhoto();
+            stopTrack()
+            let img = document.getElementById('snap');
+            img.src = URL.createObjectURL(imageBlob);
+            img.onload = () => {
+                URL.revokeObjectURL(this.src);
+            }
+            const codeReader = new ZXing.BrowserQRCodeReader();
+            try {
+                console.log('start reading');
+                debugger;
+                window.APP = await codeReader.decodeFromImage(img);
 
-//getDevices()
+            } catch (err) {
+                console.error('in error');
+                alert("E:" + err);
+                console.error(err);
+            }
+        }, 1000);
+    }
 
-// let timerInterval = setInterval(captureStream, 100)
+    // function getVideoDevice(){
+    //     navigator.mediaDevices.getUserMedia({video:true})
+    //     .then(function(stream){
+    //         let tracks  = stream.getVideoTracks()[0];
+    //         const imageCapture = new ImageCapture(tracks);
+    //         imageCapture.takePhoto()
+    //             .then(blob => {
+    //                 let img =  document.getElementById('snap')
+    //                 img.src = URL.createObjectURL(blob);
+    //                 img.onload = () => { URL.revokeObjectURL(this.src); }
+    //             })
+    //             .catch(error => console.error('takePhoto() error:', error));
+    //         debugger
+    //     })
+    // }
 
+    function captureStream() {
+        navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
+            let tracks = stream.getVideoTracks()[0]
+            const imageCapture = new ImageCapture(tracks)
+            const canvas = document.querySelector('canvas');
+            imageCapture.grabFrame()
+                .then(imageBitmap => {
+                    tracks.stop()
+                    canvas.width = imageBitmap.width;
+                    canvas.height = imageBitmap.height;
+                    canvas.getContext('2d').drawImage(imageBitmap, 0, 0);
+                })
+                .catch(error => console.error('grabFrame() error:', error));
+        })
+    }
+
+    function getCapabilities() {
+        navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
+            let track = stream.getVideoTracks()[0];
+            const capabilities = track.getCapabilities();
+            debugger
+
+        })
+    }
+
+    //getDevices()
+
+    // let timerInterval = setInterval(captureStream, 100)
 
 
 </script>
