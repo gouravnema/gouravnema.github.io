@@ -3,12 +3,18 @@
 </head>
 
 <video id="video" width="640" height="480" autoplay></video>
-<img id="snap">Snap Photo</img>
+<img id="snap"/>
 <canvas id="canvas" width="640" height="480"></canvas>
 
 <div id="devices"></div>
-
+<a href = '#' onclick="handleClick(event)">capture
 <script>
+
+function handleClick(event){
+    event.preventDefault();
+    captureImage();
+}
+
 window.APP  =1
 const singleton = {}
 
