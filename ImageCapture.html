@@ -28,7 +28,17 @@
             return singleton.track
         }
         let stream = await navigator.mediaDevices.getUserMedia({video: true});
-        singleton.track = stream.getVideoTracks()[1];
+        let tempTracks = stream.getVideoTracks();
+        alert(tempTracks.length)
+        let useSecondCam = false;
+        singleton.track = stream.getVideoTracks()[0]
+        if(tempTracks.length > 1){
+            if(confirm("Shall i use back cam.")){
+                singleton.track = stream.getVideoTracks()[1]
+            }
+        }
+
+        debugger
         return singleton.track;
     }
 
