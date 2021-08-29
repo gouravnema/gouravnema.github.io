@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>
+      Pass data from webview to html
+    </title>
+    <script language="javascript">
+      var APP_GLOBALS = {}
+      function setGlobal(key,val) {
+         APP_GLOBALS[key] = val
+        }
+     
+      function alertFor(key){
+         alert(APP_GLOBALS[key])
+      } 
+      
+    </script>
+  </head>
+  <body>
+    Use setGlobal(key,val) to set any data and then use alert(key) to get required data as alert box
+  </body>
+</html>
+  
